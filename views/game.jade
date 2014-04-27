@@ -1,0 +1,16 @@
+﻿extends layout
+
+block header
+    // Background game stylesheet
+    link(rel='stylesheet', href='/stylesheets/game.css')
+    
+
+block content
+    // Background game content
+    div#player.sprite(onmousedown = "init()", style="left:10")
+    div#enemy.sprite
+
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/game/game.js')
+    script(src='/javascripts/game/input.js')
+    script(src='/javascripts/game/sprite.js')
