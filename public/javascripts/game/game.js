@@ -1,49 +1,85 @@
-﻿var initialized = false;
+var initialized = false;
+var canvas;
+var context;
+
+var fps = 30;
+var frameInterval = 1000 / fps;
+var lastTime = (new Date()).getTime();
+
+var input;
 var player;
 
+window.addEventListener('mousedown', init, false);
+
 function init() {
-    if (!initialized) {
+    if (!initialized) {     // change to remove listener
         console.log("init game");
         initialized = true;
 
-        initInput();
+        input = new Input();
 
-        document.addEventListener('keydown', onKeyDown, false);
-        document.addEventListener('keyup', onKeyUp, false);
-        document.addEventListener('keypress', onKeyPress, false);
+        document.addEventListener('keydown', input.onKey, false);
+        document.addEventListener('keyup', input.onKey, false);
+        document.addEventListener('keypress', input.onKey, false);
 
-        player = new Sprite(document.getElementById("player"), new Vec2(10, 10), 10, "red");
+        canvas = document.getElementById("canvas");
+        // canvas.width = window.innerWidth;        // do later
+        // canvas.height = window.innerHeight;      // do later
+        canvas.width = "1600";
+        canvas.height = "600";
 
-        window.setInterval(run, 200);
+        // Game stuff
+        ///////////////////////////////
+        player = new GameObject(new Sprite("red", new Vec2(200, 100), 3.14159, new Vec2(20, 20)), 20);
+
+        if (typeof (canvas.getContext) !== undefined) {
+            context = canvas.getContext('2d');
+
+            // Begin loops
+            setTimeout(update, frameInterval);
+            requestAnimationFrame(draw);
+        }
     }
 }
 
+function update() {
+    var currTime = (new Date()).getTime();
+    var deltaTime = (currTime - lastTime) / 1000;
+    lastTime = currTime;
 
-
-function run() {
-    // timer.tick
-    // if key
-    // player.update
-    // enemies.update
-
-    // INPUT - move to player
+    // INPUT - move to player?
     //////////////////////////////////
-    player.vel.set(0, 0);
+    player.dir.set(0, 0);
 
-    if (getKeyDown(LEFT_ARROW)) {
-        player.vel.add(new Vec2(-player.speed, 0));
+    if (input.getKeyDown(input.LEFT_ARROW)) {
+        player.dir.add(new Vec2(-player.speed, 0));
     }
-    if (getKeyDown(RIGHT_ARROW)) {
-        player.vel.add(new Vec2(player.speed, 0));
+    if (input.getKeyDown(input.RIGHT_ARROW)) {
+        player.dir.add(new Vec2(player.speed, 0));
     }
-    if (getKeyDown(UP_ARROW)) {
-        player.vel.add(new Vec2(0, -player.speed));
+    if (input.getKeyDown(input.UP_ARROW)) {
+        player.dir.add(new Vec2(0, -player.speed));
     }
-    if (getKeyDown(DOWN_ARROW)) {
-        player.vel.add(new Vec2(0, player.speed));
+    if (input.getKeyDown(input.DOWN_ARROW)) {
+        player.dir.add(new Vec2(0, player.speed));
     }
 
     // UPDATE
     //////////////////////////////////
-    player.update();
+    player.update(deltaTime);
+
+
+    // Loop
+    setTimeout(update, frameInterval);
+}
+
+function draw() {
+    // Clear
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw
+    player.draw(context);
+
+    // Loop
+    requestAnimationFrame(draw);
 }

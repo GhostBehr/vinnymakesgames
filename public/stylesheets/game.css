@@ -2,11 +2,11 @@
     position: absolute;
 }
 
-#player {
+/*#player {
     width: 20px;
     height: 20px;
-    left: 200px;
-    top: 100px;
+    left: 185px;
+    top: 20px;
     background-color: rgb(235, 164, 103);
 }
 
@@ -22,4 +22,8 @@
     width: 5px;
     height: 5px;
     background-color: white;
+}*/
+
+#canvas {   /* for testing */
+    border: 5px solid #333;
 }

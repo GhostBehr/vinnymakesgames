@@ -7,10 +7,12 @@ block header
 
 block content
     // Background game content
-    div#player.sprite(onmousedown = "init()", style="left:10")
-    div#enemy.sprite
+    //- div#player.sprite(onmousedown = "init()")
+    //- div#enemy.sprite
 
-    script(src='/javascripts/jquery.js')
+    canvas#canvas(width = "1600", height = "600", style="left:0px; top:0px; position:absolute;")
+
     script(src='/javascripts/game/game.js')
     script(src='/javascripts/game/input.js')
     script(src='/javascripts/game/sprite.js')
+    script(src='/javascripts/game/gameobject.js')

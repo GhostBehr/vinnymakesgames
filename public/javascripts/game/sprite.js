@@ -1,30 +1,36 @@
-﻿function Vec2(x, y) {
-    this.x = x;
-    this.y = y;
+﻿function Vec2(_x, _y) {
+    this.x = _x;
+    this.y = _y;
 
-    this.set = function(newX, newY) {
-        this.x = newX;
-        this.y = newY;
+    this.set = function(_x, _y) {
+        this.x = _x;
+        this.y = _y;
     }
 
-    this.add = function (vec2) {
-        this.x += vec2.x;
-        this.y += vec2.y;
+    this.add = function(_vec2) {
+        this.x += _vec2.x;
+        this.y += _vec2.y;
     }
 }
 
-function Sprite(element, pos, speed, color) {
-    this.element = element;
-    this.pos = pos;
-    this.color = color;
-    this.speed = speed;
+function Sprite(_color, _pos, _rot, _size) {
+    this.color = _color;
+    this.pos = _pos;
+    this.rot = _rot;    // in rads
+    this.size = _size;
 
-    this.vel = new Vec2(0, 0);
+    this.draw = function(_context) {
+        var oldStyle = _context.fillStyle;
+        _context.fillStyle = this.color;
 
-    this.update = function() {
-        this.pos.add(this.vel);
-        // set element to position
-        this.element.style.left = this.pos.x + "px";
-        this.element.style.top = this.pos.y + "px";
+        _context.translate(this.pos.x, this.pos.y);
+        _context.rotate(this.rot);
+
+        _context.fillRect(0, 0, this.size.x, this.size.y);
+
+        _context.rotate(-this.rot);
+        _context.translate(-this.pos.x, -this.pos.y);
+
+        _context.fillStyle = oldStyle;
     }
 }

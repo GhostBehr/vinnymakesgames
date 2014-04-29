@@ -1,42 +1,52 @@
-﻿// Keys to use
-const LEFT_ARROW = 0;
-const RIGHT_ARROW = 1;
-const UP_ARROW = 2;
-const DOWN_ARROW = 3;
-const keyCodeArr = [37, 39, 38, 40];    // Keycodes in order
+﻿function Input() {
+    // Keys to use
+    this.LEFT_ARROW = 0;
+    this.RIGHT_ARROW = 1;
+    this.UP_ARROW = 2;
+    this.DOWN_ARROW = 3;
+    this.keys = [new Key(37), new Key(39), new Key(38), new Key(40)];
 
-var keys = new Array();
+    this.onKey = function(_event) {
+        switch(_event.type) {
+            case "keydown":
+                input.onKeyDown(_event, input.keys);
+                break;
 
-function initInput() {
-    keyCodeArr.forEach(function (entry) {
-        keys.push(new Key(entry));
-    });
-}
+            case "keyup":
+                input.onKeyUp(_event, input.keys);
+                break;
 
-function onKeyDown(event) {
-    keys.forEach(function (key) {
-        if (key.keyCode === event.keyCode) {
-            key.isPressed = true;
+            case "keypress":
+                input.onKeyPress(_event, input.keys);
+                break;
         }
-    });
-}
+    };
 
-function onKeyUp(event) {
-    keys.forEach(function (key) {
-        if (key.keyCode === event.keyCode) {
-            key.isPressed = false;
-        }
-    });
-}
+    this.onKeyDown = function(_event, _keys) {
+        _keys.forEach(function (key) {
+            if (key.keyCode === _event.keyCode) {
+                key.isPressed = true;
+            }
+        });
+    };
 
-function onKeyPress(event) {
-}
+    this.onKeyUp = function(_event, _keys) {
+        this.keys.forEach(function (key) {
+            if (key.keyCode === _event.keyCode) {
+                key.isPressed = false;
+            }
+        });
+    };
 
-function getKeyDown(keyCode) {
-    return keys[keyCode].isPressed;
-}
+    this.onKeyPress = function(_event, _keys) {
+    };
 
-function Key(keyCode) {
-    this.keyCode = keyCode;
-    this.isPressed = false;
+    this.getKeyDown = function(_keyCode) {
+        return this.keys[_keyCode].isPressed;
+    };
+
+    function Key(_keyCode) {
+        this.keyCode = _keyCode;
+        this.isPressed = false;
+    }
 }
