@@ -30,7 +30,7 @@ function init() {
 
         // Game stuff
         ///////////////////////////////
-        player = new GameObject(new Sprite("red", new Vec2(200, 100), 3.14159, new Vec2(20, 20)), 20);
+        player = new Player();
 
         if (typeof (canvas.getContext) !== undefined) {
             context = canvas.getContext('2d');
@@ -46,23 +46,6 @@ function update() {
     var currTime = (new Date()).getTime();
     var deltaTime = (currTime - lastTime) / 1000;
     lastTime = currTime;
-
-    // INPUT - move to player?
-    //////////////////////////////////
-    player.dir.set(0, 0);
-
-    if (input.getKeyDown(input.LEFT_ARROW)) {
-        player.dir.add(new Vec2(-player.speed, 0));
-    }
-    if (input.getKeyDown(input.RIGHT_ARROW)) {
-        player.dir.add(new Vec2(player.speed, 0));
-    }
-    if (input.getKeyDown(input.UP_ARROW)) {
-        player.dir.add(new Vec2(0, -player.speed));
-    }
-    if (input.getKeyDown(input.DOWN_ARROW)) {
-        player.dir.add(new Vec2(0, player.speed));
-    }
 
     // UPDATE
     //////////////////////////////////
