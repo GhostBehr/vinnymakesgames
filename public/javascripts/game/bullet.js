@@ -8,12 +8,21 @@ function Bullet(_pos, _dir, _list) {
 
         if (this.go.sprite.pos.x < 0 || this.go.sprite.pos.x > 2000
             || this.go.sprite.pos.y < 0 || this.go.sprite.pos.y > 2000) {
-            
-            this.list.splice(this.list.indexOf(this), 1);
+            this.remove();
+        }
+
+        for (var i = 0; i < walls.length; ++i) {
+            if(this.go.getBounds().intersects(walls[i].getBounds())) {
+                this.remove();
+            }
         }
     };
 
     this.draw = function(_context) {
         this.go.draw(context);
     };
+
+    this.remove = function() {
+        this.list.splice(this.list.indexOf(this), 1);
+    }
 }

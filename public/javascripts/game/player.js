@@ -125,87 +125,13 @@ function Player() {
         }
 
 
-        //  // Move
-        // if (input.getKeyDown(input.A)) {
-        //     this.go.dir.add(new Vec2(-1, 0));
-        //     // this.facing = "l";
-        // }
-        // if (input.getKeyDown(input.D)) {
-        //     this.go.dir.add(new Vec2(1, 0));
-        //     // this.facing = "r";
-        // }
-        // if (input.getKeyDown(input.W)) {
-        //     this.go.dir.add(new Vec2(0, -1));
-        //     // this.facing = "u";
-        // }
-        // if (input.getKeyDown(input.S)) {
-        //     this.go.dir.add(new Vec2(0, 1));
-        //     // this.facing = "d";
-        // }
-
-        // // Shoot
-        // // LEFT
-        // if (input.getKeyDown(input.LEFT_ARROW)) {
-        //     if (!input.getKeyDown(input.RIGHT_ARROW)) {
-        //         // this.facing = "l";
-        //         this.tryShot(new Vec2(-1, 0));
-        //     }
-        // }
-        // // RIGHT
-        // else if (input.getKeyDown(input.RIGHT_ARROW)) {
-        //     // this.facing = "r";
-        //     this.tryShot(new Vec2(1, 0));
-        // }
-
-        // // UP
-        // if (input.getKeyDown(input.UP_ARROW)) {
-        //     if (!input.getKeyDown(input.DOWN_ARROW)) {
-        //         // this.facing = "u";
-        //         this.tryShot(new Vec2(0, -1));
-        //     }
-        // }
-        // // DOWN
-        // else if (input.getKeyDown(input.DOWN_ARROW)) {
-        //     // this.facing = "d";
-        //     this.tryShot(new Vec2(0, 1));
-        // }
-
-        // if (!this.canFire) {
-        //     this.fireTimer += _deltaTime;
-        //     if (this.fireTimer >= this.fireRate) {
-        //         this.canFire = true;
-        //         this.fireTimer = 0;
-        //     }
-        // }
-
-        // // Facing
-        // if (input.getKeyDownOnce(input.LEFT_ARROW)) {
-        //     this.facing = "l";
-        // }
-        // else if (input.getKeyDownOnce(input.RIGHT_ARROW)) {
-        //     this.facing = "r";
-        // }
-        // else if (input.getKeyDownOnce(input.UP_ARROW)) {
-        //     this.facing = "u";
-        // }
-        // else if (input.getKeyDownOnce(input.DOWN_ARROW)) {
-        //     this.facing = "d";
-        // }
-        // else if (input.getKeyDownOnce(input.A)) {
-        //     this.facing = "l";
-        // }
-        // else if (input.getKeyDownOnce(input.D)) {
-        //     this.facing = "r";
-        // }
-        // else if (input.getKeyDownOnce(input.W)) {
-        //     this.facing = "u";
-        // }
-        // else if (input.getKeyDownOnce(input.S)) {
-        //     this.facing = "d";
-        // }
-
         // Update
-        this.go.update(_deltaTime);
+        var deltaPos = this.go.update(_deltaTime);
+        for (var i = 0; i < walls.length; ++i) {
+            if(this.go.getBounds().intersects(walls[i].getBounds())) {
+                this.go.sprite.pos.subtract(deltaPos);
+            }
+        }
 
         switch(this.facing) {
             case "l":
@@ -249,10 +175,6 @@ function Player() {
 
     // HELPERS
     /////////////////////////////////
-    this.updateInputQueue = function() {
-
-    }
-
     this.tryShot = function(_shotDir) {
         if (this.canFire) {
             this.bullets.push(new Bullet(this.go.getPos(), _shotDir, this.bullets));

@@ -1,17 +1,28 @@
-﻿extends layout
+extends layout
 
 block header
     // Background game stylesheet
+    // reminder - may not be neccessary
     link(rel='stylesheet', href='/stylesheets/game.css')
     
 
 block content
-    // Background game content
-    //- div#player.sprite(onmousedown = "init()")
-    //- div#enemy.sprite
-
+    // Background game
     canvas#canvas(width = "1600", height = "600", style="left:0px; top:0px; position:absolute;")
 
+    // Test content, will be in seperate .jade when combined with real page
+    // also remember to move style to a css probably
+    .obstacleRange(style="left:0px; top:0px; width:50%; height:50%; position:absolute")
+        .obstacle(style="left:0px; top:0px; width:20%").
+            Here is some test text in a block!
+
+    .obstacleRange(style="left:200px; top:400px; width:50%; height:50%; position:absolute")
+        .obstacle(style="left:0px; top:0px; width:20%").
+            Here is more text!! GARHJADGHJADRTHO
+
+
+    // Game scripts
+    script(src="//code.jquery.com/jquery-1.10.2.js")
     script(src='/javascripts/game/game.js')
     script(src='/javascripts/game/input.js')
     script(src='/javascripts/game/sprite.js')

@@ -8,6 +8,7 @@ var lastTime = (new Date()).getTime();
 
 var input;
 var player;
+var walls;
 
 window.addEventListener('mousedown', init, false);
 
@@ -16,20 +17,20 @@ function init() {
         console.log("init game");
         initialized = true;
 
-        input = new Input();
-
-        document.addEventListener('keydown', input.onKey, false);
-        document.addEventListener('keyup', input.onKey, false);
-        document.addEventListener('keypress', input.onKey, false);
-
         canvas = document.getElementById("canvas");
-        // canvas.width = window.innerWidth;        // do later
-        // canvas.height = window.innerHeight;      // do later
-        canvas.width = "1600";
-        canvas.height = "600";
+        canvas.setAttribute("tabindex", "1");
 
-        // Game stuff
-        ///////////////////////////////
+        resize();
+        $(window).resize(resize);
+
+        input = new Input();
+        canvas.addEventListener('keydown', input.onEvent, false);
+        canvas.addEventListener('keyup', input.onEvent, false);
+        canvas.addEventListener('keypress', input.onEvent, false);
+        canvas.addEventListener('blur', input.onEvent, false);
+
+        canvas.focus();
+
         player = new Player();
 
         if (typeof (canvas.getContext) !== undefined) {
@@ -42,15 +43,27 @@ function init() {
     }
 }
 
+// For now, resizes canvas and creates new walls
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    walls = new Array();
+
+    $(".obstacle").each(function() {
+        var wallPos = new Vec2($(this).offset().left + $(this).outerWidth() / 2, $(this).offset().top + $(this).outerHeight() / 2);
+        var wallSize = new Vec2($(this).outerWidth(), $(this).outerHeight());
+
+        walls.push(new Sprite("#303030", wallPos, 0, wallSize));
+    });
+}
+
 function update() {
     var currTime = (new Date()).getTime();
     var deltaTime = (currTime - lastTime) / 1000;
     lastTime = currTime;
 
-    // UPDATE
-    //////////////////////////////////
     player.update(deltaTime);
-
 
     // Loop
     setTimeout(update, frameInterval);
@@ -61,6 +74,9 @@ function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw
+    for (var i = 0; i < walls.length; ++i) {
+        walls[i].draw(context);
+    }
     player.draw(context);
 
     // Loop

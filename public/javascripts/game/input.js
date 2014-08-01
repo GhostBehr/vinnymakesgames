@@ -20,7 +20,7 @@
         new Key(68)
     ];
 
-    this.onKey = function(_event) {
+    this.onEvent = function(_event) {
         switch(_event.type) {
             case "keydown":
                 input.onKeyDown(_event, input.keys);
@@ -33,12 +33,20 @@
             case "keypress":
                 input.onKeyPress(_event, input.keys);
                 break;
+
+            case "blur":
+                input.onMouseLeave(_event, input.keys);
+                break;
         }
     };
 
     this.onKeyDown = function(_event, _keys) {
         _keys.forEach(function (key) {
             if (key.keyCode === _event.keyCode) {
+
+                // Confines active keys to perform only intended actions
+                _event.preventDefault();
+                
                 if (!key.isPressed) {
                     key.uncheckedDown = true;
                 }
@@ -60,6 +68,15 @@
 
     this.onKeyPress = function(_event, _keys) {
     };
+
+    this.onMouseLeave = function(_event, _keys) {
+        console.log("onMouseLeave");
+        this.keys.forEach(function (key) {
+            key.isPressed = false;
+            key.uncheckedDown = false;
+            key.uncheckedUp = true;
+        });
+    }
 
     this.getKeyDown = function(_keyCode) {
         return this.keys[_keyCode].isPressed;

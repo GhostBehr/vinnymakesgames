@@ -4,7 +4,9 @@ function GameObject(_sprite, _dir, _speed) {
 	this.dir = _dir;
 
     this.update = function(_deltaTime) {
-        this.getPos().add(new Vec2(this.dir.x * this.speed * _deltaTime, this.dir.y * this.speed * _deltaTime));
+        var delta = new Vec2(this.dir.x * this.speed * _deltaTime, this.dir.y * this.speed * _deltaTime);
+        this.getPos().add(delta);
+        return delta;
     }
 
     this.draw = function(_context) {
@@ -33,5 +35,9 @@ function GameObject(_sprite, _dir, _speed) {
     };
     this.setSize = function(_size) {
         this.sprite.size = _size;
+    };
+
+    this.getBounds = function() {
+        return this.sprite.getBounds();
     };
 }

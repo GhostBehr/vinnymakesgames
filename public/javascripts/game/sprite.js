@@ -12,8 +12,28 @@
         this.y += _vec2.y;
     }
 
+    this.subtract = function(_vec2) {
+        this.x -= _vec2.x;
+        this.y -= _vec2.y;
+    }
+
     this.copy = function() {
         return new Vec2(this.x, this.y);
+    }
+}
+
+function Rect(_pos, _size) {
+    this.pos = new Vec2(_pos.x - _size.x / 2, _pos.y - _size.y / 2);
+    this.size = _size.copy();
+
+    this.intersects = function(_rect) {
+        if (_rect.pos.x < this.pos.x + this.size.x
+            && this.pos.x < _rect.pos.x + _rect.size.x
+            && _rect.pos.y < this.pos.y + this.size.y
+            && this.pos.y < _rect.pos.y + _rect.size.y) {
+            return true;
+        }
+        return false;
     }
 }
 
@@ -38,5 +58,9 @@ function Sprite(_color, _pos, _rot, _size) {
         _context.translate(-this.pos.x, -this.pos.y);
 
         _context.fillStyle = oldStyle;
+    }
+
+    this.getBounds = function() {
+        return new Rect(this.pos, this.size);
     }
 }
