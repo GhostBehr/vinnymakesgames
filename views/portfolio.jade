@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+    h1= title
+
+    if contentType = "iframe"
+        iframe(src = iframe.src, width = iframe.width, height = iframe.height, frameborder = "0", marginwidth = "0", marginheight = "0", scrolling = "no")
+
+    h3= title

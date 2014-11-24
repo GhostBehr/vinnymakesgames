@@ -2,75 +2,38 @@ extends layout
 
 block content
 
-    #container
-        #left.column
-            h1.obstacle(style="left:0%; top:0%; width:50%").
-                Vinny
+    h1 Hi, I'm Vinny. You should play my games.
+    br
 
-            h1.obstacle(style="left:0%; top:0%; width:50%").
-                makes
+    h2 School Projects
+    p
+        a(href = '/portfolio/call-of-boidy')
+            | Call of Boidy
+        | - Target practice with flocking AI
 
-            h1.obstacle(style="left:0%; top:0%; width:50%").
-                games
+    p
+        a(href = '/portfolio/fps-man')
+            | FPS-MAN
+        | - First person PAC-MAN with accurate ghost AI
 
-            h1.obstacle(style="left:0%; top:0%; width:50%").
-                .com
-
-            h2.obstacle(style="left:0%; top:0%; width:50%").
-                Click to start
-
-            h2.obstacle(style="left:0%; top:0%; width:50%").
-                WASD and arrows
-
-        #center.column
-            h2.obstacle(style="left:0%; top:0%; width:5%").
-                Hi,
-
-            h2.obstacle(style="left:20%; top:20%; width:18%").
-                I'm Vinny Crupi.
-
-            h2.obstacle(style="left:20%; top:40%; width:14%").
-                I make games.
-
-            h2.obstacle(style="left:80%; top:60%; width:30%").
-                The idea here is for text blocks to be obstacles. It works, but then I realized blocks of text look dumb!
-
-        #right.column.
-            There's a right column here
-
-
-    // Background game
-    canvas#canvas(width = "1600", height = "600", style="left:0px; top:0px; position:absolute; z-index: -1;")
+    br
+    br
+    br
     
-    // Game scripts
-    script(src="//code.jquery.com/jquery-1.10.2.js")
-    script(src='/javascripts/game/game.js')
-    script(src='/javascripts/game/input.js')
-    script(src='/javascripts/game/sprite.js')
-    script(src='/javascripts/game/gameobject.js')
-    script(src='/javascripts/game/player.js')
-    script(src='/javascripts/game/bullet.js')
+    h2 Personal Projects
+    p
+        a(href = '/portfolio/background-game-concept')
+            | Site concept
+        | - (Unfinished and broken) Twin stick shooter in canvas
 
-    //-     div#center.column
-    //-         div.content
-    //-             h1 Vinnymakesgames.com
-    //-             p Work in progress personal website of Game Developer Vinny Crupi
-    //-             p Written using Node.js, Jade, and my tears
-    //-             p Current progress can be found at 
-    //-                 a(href = 'https://github.com/GhostBehr/vinnymakesgames').
-    //-                     github.com/GhostBehr/vinnymakesgames
+    br
+    br
+    br
 
-    //-     div#left.column
-    //-         div.content
-    //-             h1 Hi
-    //-             p This is gonna be a nav area
+    h3
+        a(href = 'https://github.com/GhostBehr')
+            | Github
 
-    //-     div#right.column
-    //-         div.content
-    //-             h1 Woah there
-    //-             p What's this gonna be? A secret!
-
-    //- div#footer
-    //-     p Ninja footer!
-    //-         a(href = 'http://www.vinnymakesgames.com/game').
-    //-                     Here is a secret link to a thing!
+    h3
+        a(href = 'mailto:vinnycrupi@hotmail.com?Subject=I%20love%20all%20of%20your%20games%20let%20me%20pay%20you')
+            | Contact Me

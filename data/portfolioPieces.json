@@ -1,0 +1,37 @@
+{
+    "count" : 3,
+    "pieces" : [
+        {
+            "id": "call-of-boidy", 
+            "title": "Call of Boidy",
+            "contentType" : "iframe",
+            "iframe" : {
+                "src" : "https://4d7bb1adf5d8e4a87dd890be1637f3cc68308cba.googledrive.com/host/0B98Pcoezo896dkFaR25YTGFvZXM/CallOfBoidy.html",
+                "width" : 960,
+                "height" : 600
+            }
+        },
+
+        {
+            "id": "fps-man", 
+            "title": "FPS-MAN",
+            "contentType" : "iframe",
+            "iframe" : {
+                "src" : "https://6fd3bb9fc5da7189500f6a3f000f41345b25168d.googledrive.com/host/0B98Pcoezo896OE1EU2t2N2hkY0E/FPSMAN.html",
+                "width" : 960,
+                "height" : 600
+            }
+        },
+
+        {
+            "id": "background-game-concept", 
+            "title": "Website Concept",
+            "contentType" : "iframe",
+            "iframe" : {
+                "src" : "/scraps/backgroundgame",
+                "width" : 1000,
+                "height" : 600
+            }
+        }
+    ]
+}

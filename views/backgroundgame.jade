@@ -1,0 +1,52 @@
+extends layout
+
+block content
+
+    #container
+        #left.column
+            h1.obstacle(style="left:0%; top:0%; width:50%").
+                Vinny
+
+            h1.obstacle(style="left:0%; top:0%; width:50%").
+                makes
+
+            h1.obstacle(style="left:0%; top:0%; width:50%").
+                games
+
+            h1.obstacle(style="left:0%; top:0%; width:50%").
+                .com
+
+            h2.obstacle(style="left:0%; top:0%; width:50%").
+                Click to start
+
+            h2.obstacle(style="left:0%; top:0%; width:50%").
+                WASD and arrows
+
+        #center.column
+            h2.obstacle(style="left:0%; top:0%; width:5%").
+                Hi,
+
+            h2.obstacle(style="left:20%; top:20%; width:18%").
+                I'm Vinny Crupi.
+
+            h2.obstacle(style="left:20%; top:40%; width:14%").
+                I make games.
+
+            h2.obstacle(style="left:80%; top:60%; width:30%").
+                The idea here is for text blocks to be obstacles. It works, but then I realized blocks of text look dumb!
+
+        #right.column.
+            There's a right column here
+
+
+    // Background game
+    canvas#canvas(width = "1000", height = "600", style="left:0px; top:0px; position:absolute; z-index: -1;")
+    
+    // Game scripts
+    script(src="//code.jquery.com/jquery-1.10.2.js")
+    script(src='/javascripts/game/game.js')
+    script(src='/javascripts/game/input.js')
+    script(src='/javascripts/game/sprite.js')
+    script(src='/javascripts/game/gameobject.js')
+    script(src='/javascripts/game/player.js')
+    script(src='/javascripts/game/bullet.js')
