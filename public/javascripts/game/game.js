@@ -10,7 +10,7 @@ var input;
 var player;
 var walls;
 
-window.addEventListener('mousedown', init, false);
+// window.addEventListener('mousedown', init, false);
 
 function init() {
     if (!initialized) {     // change to remove listener
