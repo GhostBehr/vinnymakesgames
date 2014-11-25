@@ -4,7 +4,102 @@ block content
 
     h1= title
 
-    if contentType = "iframe"
-        iframe(src = iframe.src, width = iframe.width, height = iframe.height, frameborder = "0", marginwidth = "0", marginheight = "0", scrolling = "no")
+    case contentType
+        when "iframe"
+            iframe(src = iframe.src, width = iframe.width, height = iframe.height, frameborder = "0", marginwidth = "0", marginheight = "0", scrolling = "no", allowfullscreen)
 
-    h3= title
+        when "unity"
+            script(type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js')
+            script(type="text/javascript").
+                var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+                if (document.location.protocol == 'https:')
+                    unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+                document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+
+            script(type="text/javascript").
+                var config = {
+                    width: !{unity.width},
+                    height: !{unity.height},
+                    params: { 
+                        enableDebugging:"0",
+                        disableContextMenu:"1",
+                        disableFullscreen:"1"
+                    }
+                };
+                var u = new UnityObject2(config);
+                
+                jQuery(function() {
+
+                    var $missingScreen = jQuery("#unityPlayer").find(".missing");
+                    var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+                    $missingScreen.hide();
+                    $brokenScreen.hide();
+
+                    u.observeProgress(function (progress) {
+                        switch(progress.pluginStatus) {
+                            case "broken":
+                                $brokenScreen.find("a").click(function (e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    u.installPlugin();
+                                    return false;
+                                });
+                                $brokenScreen.show();
+                            break;
+                            case "missing":
+                                $missingScreen.find("a").click(function (e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    u.installPlugin();
+                                    return false;
+                                });
+                                $missingScreen.show();
+                            break;
+                            case "installed":
+                                $missingScreen.remove();
+                            break;
+                            case "first":
+                            break;
+                        }
+                    });
+                    u.initPlugin(jQuery("#unityPlayer")[0], "!{unity.src}");
+                    console.log("init!");
+                });
+
+            style(type="text/css").
+                div.broken,
+                div.missing {
+                    margin: auto;
+                    position: relative;
+                    top: 50%;
+                    width: 193px;
+                }
+                div.broken a,
+                div.missing a {
+                    height: 63px;
+                    position: relative;
+                    top: -31px;
+                }
+                div.broken img,
+                div.missing img {
+                    border-width: 0px;
+                }
+                div.broken {
+                    display: none;
+                }
+                div#unityPlayer {
+                    cursor: default;
+                    height: !{unity.height}px;
+                    width: !{unity.width}px;
+                }
+
+            div#unityPlayer
+                div.missing
+                    a(href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!")
+                        img(alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63")
+
+        default
+            p There is some unsupported content here! Please tell me about it.
+
+
+    h3= contentType
