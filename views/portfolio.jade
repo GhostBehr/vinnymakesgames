@@ -102,4 +102,19 @@ block content
             p There is some unsupported content here! Please tell me about it.
 
 
-    h3= contentType
+    if description.date
+        h3 Date: !{description.date}
+
+    if description.tech
+        h3 Tech: !{description.tech}
+
+    if description.highlights
+        h4 Highlights: !{description.highlights}
+
+    if description.long
+        p !{description.long}
+
+    if description.controls
+        h4 Controls:
+        each control in description.controls
+            p !{control.key} : !{control.action}

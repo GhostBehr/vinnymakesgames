@@ -5,31 +5,25 @@ block content
     h1 Hi, I'm Vinny. You should play my games.
     br
 
-    h2 School Projects
-    p
-        a(href = '/portfolio/call-of-boidy')
-            | Call of Boidy
-        | - Target practice with flocking AI
-
-    p
-        a(href = '/portfolio/fps-man')
-            | FPS-MAN
-        | - First person PAC-MAN with accurate ghost AI
-
-    p
-        a(href = '/portfolio/kart-kollision')
-            | Vinny's Kart Kollision Extravaganza
-        | - Silly party racing game for 4 players
+    h2 Finished Projects
+    each piece in pieces
+        if piece.description.date != "In progress"
+            p
+                a(href = '/portfolio/#{piece.id}')
+                    | !{piece.title}
+                | - !{piece.description.short}
 
     br
     br
     br
-    
-    h2 Personal Projects
-    p
-        a(href = '/portfolio/background-game-concept')
-            | Site concept
-        | - (Unfinished and broken) Twin stick shooter in canvas
+
+    h2 Current Projects
+    each piece in pieces
+        if piece.description.date == "In progress"
+            p
+                a(href = '/portfolio/#{piece.id}')
+                    | !{piece.title}
+                | - !{piece.description.short}
 
     br
     br

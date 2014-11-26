@@ -1,25 +1,94 @@
 {
-    "count" : 4,
     "pieces" : [
         {
             "id" : "call-of-boidy", 
             "title" : "Call of Boidy",
+            
             "contentType" : "unity",
             "unity" : {
                 "src" : "https://googledrive.com/host/0B98Pcoezo896dkFaR25YTGFvZXM/CallOfBoidy.unity3d",
                 "width" : 960,
                 "height" : 600
+            },
+
+            "description" : {
+                "date" : "April 2014",
+
+                "short" : "Target practice with flocking AI",
+                "long" : "Made to showcase an implementation of flocking boid AI. Various target options. Uses either hitscan or projectile based shooting.",
+                
+                "tech" : [
+                    "C#",
+                    "Unity"
+                ],
+                "highlights" : [
+                    "Flocking AI"
+                ],
+
+                "controls" : [
+                    {
+                        "key" : "WASD",
+                        "action" : "Move"
+                    },
+                    {
+                        "key" : "Mouse",
+                        "action" : "Look around"
+                    },
+                    {
+                        "key" : "Left Click",
+                        "action" : "Shoot"
+                    },
+                    {
+                        "key" : "Right Click",
+                        "action" : "Aim down sights"
+                    },
+                    {
+                        "key" : "Escape",
+                        "action" : "Pause"
+                    }
+                ]
+
             }
+
         },
 
         {
             "id" : "fps-man", 
             "title" : "FPS-MAN",
+
             "contentType" : "unity",
             "unity" : {
                 "src" : "https://googledrive.com/host/0B98Pcoezo896OE1EU2t2N2hkY0E/FPSMAN.unity3d",
                 "width" : 960,
                 "height" : 600
+            },
+
+            "description" : {
+                "date" : "December 2013",
+
+                "short" : "First person PAC-MAN with accurate ghost AI",
+                "long" : "Written to model the original PAC-MAN as closely as possible, including the ghost's individual AIs, scoring, etc. More information can be found here http://home.comcast.net/~jpittman2/pacman/pacmandossier.html. Flashlight and ghost lighting added after it turned out first person PAC-MAN was a little frightening.",
+                
+                "tech" : [
+                    "C#",
+                    "Unity"
+                ],
+                "highlights" : [
+                    "Faithful recreation of arcade game",
+                    "Spooky atmosphere"
+                ],
+
+                "controls" : [
+                    {
+                        "key" : "WASD",
+                        "action" : "Move"
+                    },
+                    {
+                        "key" : "Mouse",
+                        "action" : "Look around"
+                    }
+                ]
+
             }
         },
 
@@ -31,17 +100,63 @@
                 "src" : "//www.youtube.com/embed/xv9s5rCxjZw",
                 "width" : 560,
                 "height" : 315
+            },
+
+            "description" : {
+                "date" : "April 2013",
+
+                "short" : "Silly party racing game for 4 players",
+                "long" : "First ever attempt at a real game. After not being able to get collision detection to work reliably, I refocused the game to take advantage of the sillyness, making it more of a party game. It worked well. Also uses  remote high score database.",
+                
+                "tech" : [
+                    "C#",
+                    "XNA",
+                    "SQL"
+                ],
+                "highlights" : [
+                    "4 player multiplayer",
+                    "Remote high score database",
+                    "Fun"
+                ]
             }
         },
 
         {
             "id" : "background-game-concept", 
-            "title" : "Website Concept",
+            "title" : "Canvas Shooter",
+
             "contentType" : "iframe",
             "iframe" : {
                 "src" : "/scraps/backgroundgame",
                 "width" : 1200,
                 "height" : 600
+            },
+
+            "description" : {
+                "date" : "In progress",
+
+                "short" : "Twin stick shooter framework for browsers",
+                "long" : "Originally a concept for my website, a twin stick shooter example that runs in the background of a web page.",
+                
+                "tech" : [
+                    "JavaScript",
+                    "Canvas"
+                ],
+                "highlights" : [
+                    "Great twin stick controls",
+                    "Builds boundaries based off web elements"
+                ],
+
+                "controls" : [
+                    {
+                        "key" : "WASD",
+                        "action" : "Move"
+                    },
+                    {
+                        "key" : "Arrows",
+                        "action" : "Shoot"
+                    }
+                ]
             }
         }
     ]
