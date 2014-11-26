@@ -66,8 +66,8 @@
             "description" : {
                 "date" : "December 2013",
 
-                "short" : "First person PAC-MAN with accurate ghost AI",
-                "long" : "Written to model the original PAC-MAN as closely as possible, including the ghost's individual AIs, scoring, etc. More information can be found here http://home.comcast.net/~jpittman2/pacman/pacmandossier.html. Flashlight and ghost lighting added after it turned out first person PAC-MAN was a little frightening.",
+                "short" : "First person Pac-Man with accurate ghost AI",
+                "long" : "Written to model the original Pac-Man as closely as possible, including the ghost's individual AIs, scoring, etc. More information can be found at <a href='http://home.comcast.net/~jpittman2/pacman/pacmandossier.html'>The Pac-Man Dossier.</a> Flashlight and ghost lighting added after it turned out first person Pac-Man was a little frightening.",
                 
                 "tech" : [
                     "C#",
