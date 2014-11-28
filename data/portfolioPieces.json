@@ -158,6 +158,73 @@
                     }
                 ]
             }
+        },
+
+        {
+            "id" : "castle-crasher-model", 
+            "title" : "Castle Crasher 3D Model",
+            "contentType" : "iframe",
+            "iframe" : {
+                "src" : "//www.youtube.com/embed/m19AdgKuBzk",
+                "width" : 560,
+                "height" : 315
+            },
+
+            "description" : {
+                "date" : "December 2013",
+
+                "short" : "Textured, rigged, and animated in Blender",
+                "long" : "First big effort in a complete 3D model. Made entirely in Blender.",
+                
+                "tech" : [
+                    "Blender"
+                ],
+                "highlights" : [
+                    "Rigging",
+                    "Animation",
+                    "Sausage"
+                ]
+            }
+        },
+
+        {
+            "id" : "sportsapalooza", 
+            "title" : "Sportsapalooza",
+
+            "contentType" : "iframe",
+            "iframe" : {
+                "src" : "//www.youtube.com/embed/3TTn3asIlTg",
+                "width" : 560,
+                "height" : 315
+            },
+
+            "description" : {
+                "date" : "April 2014",
+
+                "short" : "Multiplayer Android \"sports\" game in canvas",
+                "long" : "<a href='https://drive.google.com/uc?export=download&id=0B98Pcoezo896bTlHdmstMUl5RkE'>Download .apk.</a> Created with Jordan Kjaer. A mobile, multiplayer \"sports\" game make from scratch, supporting full multitouch. Run your football players out of your football dugout by pressing on your football end zone. Will the football shuttlecock bounce off of the football boards and net you a hole-in-dunk? Or maybe a slamputt? It's a sportsapalooza scorepocalypse!",
+                
+                "tech" : [
+                    "Java",
+                    "Canvas"
+                ],
+                "highlights" : [
+                    "Multitouch",
+                    "Local multiplayer",
+                    "Hilarious"
+                ],
+
+                "controls" : [
+                    {
+                        "key" : "Tap end zone",
+                        "action" : "Create dude"
+                    },
+                    {
+                        "key" : "Tap detonator",
+                        "action" : "Blow dude"
+                    }
+                ]
+            }
         }
     ]
 }
