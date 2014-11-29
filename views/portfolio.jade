@@ -6,7 +6,7 @@ block content
 
     case contentType
         when "iframe"
-            iframe(src = iframe.src, width = iframe.width, height = iframe.height, frameborder = "0", marginwidth = "0", marginheight = "0", scrolling = "no", allowfullscreen)
+            iframe(src = content.src, width = content.width, height = content.height, frameborder = "0", marginwidth = "0", marginheight = "0", scrolling = "no", allowfullscreen)
 
         when "unity"
             script(type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js')
@@ -18,8 +18,8 @@ block content
 
             script(type="text/javascript").
                 var config = {
-                    width: !{unity.width},
-                    height: !{unity.height},
+                    width: !{content.width},
+                    height: !{content.height},
                     params: { 
                         enableDebugging:"0",
                         disableContextMenu:"1",
@@ -62,7 +62,7 @@ block content
                             break;
                         }
                     });
-                    u.initPlugin(jQuery("#unityPlayer")[0], "!{unity.src}");
+                    u.initPlugin(jQuery("#unityPlayer")[0], "!{content.src}");
                     console.log("init!");
                 });
 
@@ -89,8 +89,8 @@ block content
                 }
                 div#unityPlayer {
                     cursor: default;
-                    height: !{unity.height}px;
-                    width: !{unity.width}px;
+                    height: !{content.height}px;
+                    width: !{content.width}px;
                 }
 
             div#unityPlayer
@@ -102,19 +102,19 @@ block content
             p There is some unsupported content here! Please tell me about it.
 
 
-    if description.date
+    if description.date != ""
         h3 Date: !{description.date}
 
-    if description.tech
+    if description.tech != ""
         h3 Tech: !{description.tech}
 
-    if description.highlights
+    if description.highlights != ""
         h4 Highlights: !{description.highlights}
 
-    if description.long
+    if description.long != ""
         p !{description.long}
 
-    if description.controls
+    if description.controls != ""
         h4 Controls:
         each control in description.controls
             p !{control.key} : !{control.action}

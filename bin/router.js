@@ -5,18 +5,18 @@ var portfolio = require('./portfolio');
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    var portfolioJSON = portfolio.getAll();
-
-    res.render('home', portfolioJSON);
+    portfolio.getAll(function(data) {
+        res.render('home', data);
+    });
 });
 
 
-router.get('/portfolio/:pieceID', function (req, res) {
-    var id = req.params.pieceID;
-    var pieceJSON = portfolio.getPiece(id);
-    // console.log(piece);
+router.get('/portfolio/:pieceURL', function (req, res) {
+    var url = req.params.pieceURL;
 
-    res.render('portfolio', pieceJSON);
+    portfolio.getPiece(url, function(data) {
+        res.render('portfolio', data);
+    });
 })
 
 

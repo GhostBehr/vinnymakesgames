@@ -9,7 +9,7 @@ block content
     each piece in pieces
         if piece.description.date != "In progress"
             p
-                a(href = '/portfolio/#{piece.id}')
+                a(href = '/portfolio/#{piece.url}')
                     | !{piece.title}
                 | - !{piece.description.short}
 
@@ -21,7 +21,7 @@ block content
     each piece in pieces
         if piece.description.date == "In progress"
             p
-                a(href = '/portfolio/#{piece.id}')
+                a(href = '/portfolio/#{piece.url}')
                     | !{piece.title}
                 | - !{piece.description.short}
 

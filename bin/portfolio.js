@@ -1,21 +1,73 @@
-var fs = require('fs');
+var mongoose = require('mongoose');
+var uri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/app24551415";
 
-exports.getAll = function() {
-    var portfolioJSON = JSON.parse(fs.readFileSync('data/portfolioPieces.json', 'utf8'));
-    return portfolioJSON;
+var pieceSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    url: String,
+    title: String,
+    contentType: String,
+    content: {
+        src: String,
+        width: Number,
+        height: Number
+    },
+    description: { 
+        date: String,
+        short: String,
+        long: String,
+        tech: [String],
+        highlights: [String],
+        controls: [{
+            key: String,
+            action: String,  
+        }]
+    }
+});
+
+var Piece = mongoose.model('Piece', pieceSchema);
+
+exports.getAll = function(callback) {
+    mongoose.connect(uri);
+
+    var db = mongoose.connection;
+
+    db.on('error', function() {
+        console.log("Error connecting to mongoDB");
+    });
+
+    db.once('open', function() {
+
+        Piece.find({}).sort('-description.date title').exec(function(err, pieces) {
+            if (err) console.log("err?");
+
+            db.close();
+            callback({pieces : pieces});
+        });
+
+    });
 }
 
-exports.getPiece = function(id) {
-    console.log('get portfolio piece ' + id);
+exports.getPiece = function(url, callback) {
+    mongoose.connect(uri);
 
-    var piecesJSON = JSON.parse(fs.readFileSync('data/portfolioPieces.json', 'utf8'));
+    var db = mongoose.connection;
 
-    for (var i = 0; i < piecesJSON.pieces.length; ++i) {
-        if (piecesJSON.pieces[i].id == id)
-            return piecesJSON.pieces[i];
-    }
+    db.on('error', function() {
+        console.log("Error connecting to mongoDB");
+    });
 
-    var err = new Error('Not Found');
-    err.status = 404;
-    throw err;
+    db.once('open', function() {
+
+        Piece.find({"url" : url}).sort('-description.date title').exec(function(err, piece) {
+            if (err) {
+                var err = new Error('Not Found');
+                err.status = 404;
+                throw err;
+            }
+
+            db.close();
+            callback(piece[0]);
+        });
+
+    });
 }
