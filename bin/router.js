@@ -27,6 +27,14 @@ router.get('/portfolio/:pieceURL', function (req, res) {
     });
 })
 
+router.get('/news/:pieceURL', function (req, res) {
+    var url = req.params.pieceURL;
+
+    newspaper.getNewsItem(url, function(data) {
+        res.render('news', data);
+    });
+})
+
 
 router.get('/scraps/backgroundgame', function (req, res) {
     res.render('backgroundgame', { title: 'VinnyMakesGames: The Game'});

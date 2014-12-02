@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-//var uri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/app24551415";
-var uri = "mongodb://readDB:readonly@dogen.mongohq.com:10046/app24551415";
+var uri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/app24551415";
+// var uri = "mongodb://user:pass@dogen.mongohq.com:10046/app24551415";
 
 exports.createModel = function(name, schema) {
     var tempSchema = mongoose.Schema(schema);
