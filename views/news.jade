@@ -8,7 +8,9 @@ block content
 
     h3 Tags: 
         each tag in tags
-            | !{tag} 
+            a(href = '/news/tags/#{tag}')
+                | !{tag}
+            |  
 
     br
     br

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+    h1 Search Tag: !{toSearch}
+
+    br
+    br
+
+    each newsItem in news
+        p
+            a(href = '/news/#{newsItem._id}')
+                | !{newsItem.title}
+            |  (!{newsItem.date})

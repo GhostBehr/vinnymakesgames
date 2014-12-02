@@ -35,6 +35,14 @@ router.get('/news/:pieceURL', function (req, res) {
     });
 })
 
+router.get('/news/tags/:tag', function (req, res) {
+    var tag = req.params.tag;
+
+    newspaper.getAllWithTag(tag, function(data) {
+        res.render('tagSearch', data);
+    });
+})
+
 
 router.get('/scraps/backgroundgame', function (req, res) {
     res.render('backgroundgame', { title: 'VinnyMakesGames: The Game'});

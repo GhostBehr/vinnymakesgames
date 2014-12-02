@@ -42,5 +42,23 @@ exports.getNewsItem = function(url, callback) {
             err.status = 404;
             throw err;
         }
+
+        // This error is wrong! 0 entries != 404 error
+    });
+}
+
+exports.getAllWithTag = function(tag, callback) {
+    db.query(function() {   //query
+        return NewsItem.find({"tags" : tag}).sort('-date');
+    },
+    function(results) {     // callback
+        callback({toSearch : tag, news : results});
+    },
+    function(err) {         // custom error
+        if (err) {
+            var err = new Error('Not Found');
+            err.status = 404;
+            throw err;
+        }
     });
 }
