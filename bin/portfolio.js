@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var uri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/app24551415";
+var db = require('./database');
 
-var pieceSchema = mongoose.Schema({
+var Piece = db.createModel('Piece', {
     _id: mongoose.Schema.Types.ObjectId,
     url: String,
     title: String,
@@ -24,50 +24,27 @@ var pieceSchema = mongoose.Schema({
     }
 });
 
-var Piece = mongoose.model('Piece', pieceSchema);
-
 exports.getAll = function(callback) {
-    mongoose.connect(uri);
-
-    var db = mongoose.connection;
-
-    db.on('error', function() {
-        console.log("Error connecting to mongoDB");
-    });
-
-    db.once('open', function() {
-
-        Piece.find({}).sort('-description.date title').exec(function(err, pieces) {
-            if (err) console.log("err?");
-
-            db.close();
-            callback({pieces : pieces});
-        });
-
+    db.query(function() {   //query
+        return Piece.find({}).sort('-description.date title');
+    },
+    function(results) {     // callback
+        callback({pieces : results});
     });
 }
 
 exports.getPiece = function(url, callback) {
-    mongoose.connect(uri);
-
-    var db = mongoose.connection;
-
-    db.on('error', function() {
-        console.log("Error connecting to mongoDB");
-    });
-
-    db.once('open', function() {
-
-        Piece.find({"url" : url}).sort('-description.date title').exec(function(err, piece) {
-            if (err) {
-                var err = new Error('Not Found');
-                err.status = 404;
-                throw err;
-            }
-
-            db.close();
-            callback(piece[0]);
-        });
-
+    db.query(function() {   //query
+        return Piece.find({"url" : url}).sort('-description.date title');
+    },
+    function(results) {     // callback
+        callback(results[0]);
+    },
+    function(err) {         // custom error
+        if (err) {
+            var err = new Error('Not Found');
+            err.status = 404;
+            throw err;
+        }
     });
 }

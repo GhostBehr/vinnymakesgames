@@ -5,12 +5,24 @@ block content
     h1 Hi, I'm Vinny. You should play my games.
     br
 
+    h2 Recent News
+    each newsItem in news
+        p
+            a(href = '/news/#{newsItem._id}')
+                | !{newsItem.title}
+            |  (!{newsItem.date})
+
+    br
+    br
+    br
+
+
     h2 Finished Projects
     each piece in pieces
         if piece.description.date != "In progress"
             p
                 a(href = '/portfolio/#{piece.url}')
-                    | !{piece.title}
+                    | !{piece.title} 
                 | - !{piece.description.short}
 
     br
@@ -22,7 +34,7 @@ block content
         if piece.description.date == "In progress"
             p
                 a(href = '/portfolio/#{piece.url}')
-                    | !{piece.title}
+                    | !{piece.title} 
                 | - !{piece.description.short}
 
     br

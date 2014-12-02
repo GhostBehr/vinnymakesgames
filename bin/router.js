@@ -2,11 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 var portfolio = require('./portfolio');
+var newspaper = require('./news');
+
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    portfolio.getAll(function(data) {
-        res.render('home', data);
+    portfolio.getAll(function(portfolioData) {
+        newspaper.getRecent(3, function(newsData) {
+            res.render('home', {
+                title: 'VinnyMakesGames | Home',
+                pieces: portfolioData.pieces,
+                news: newsData.news
+            });
+        })
     });
 });
 
