@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+    h1= title
+
+    h3 Date: !{date}
+
+    h3 Tags: 
+        each tag in tags
+            | !{tag} 
+
+    br
+    br
+
+    p !{content}
