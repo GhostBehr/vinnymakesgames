@@ -8,6 +8,7 @@ var Piece = db.createModel('Piece', {
     contentType: String,
     content: {
         src: String,
+        text: String,
         width: Number,
         height: Number
     },
