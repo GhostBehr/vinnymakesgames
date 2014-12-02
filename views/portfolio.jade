@@ -98,6 +98,10 @@ block content
                     a(href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!")
                         img(alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63")
 
+        when "url"
+            a(href = content.src)
+                | !{content.text}
+
         default
             p There is some unsupported content here! Please tell me about it.
 
